@@ -16,15 +16,7 @@ var_dump($db);
 
 if(isset($_POST["envoyer"])) {
     $tabError = array();
-    $title = $_POST['title'];
-    $actors = $_POST['actors'];
-    $director = $_POST['director'];
-    $producer= $_POST['Producer'];
-    $YearOfProd = $_POST['YearOfProd'];
-    $Language = $_POST['Languages'];
-    $Category= $_POST['Category'];
-    $Storyline = $_POST['Storyline'];
-    $Video = $_POST['Video'];
+
 
 
 
@@ -49,7 +41,7 @@ if(isset($_POST["envoyer"])) {
         array_push($tabError, "Veuillez renseigné un URL");
     else{
         $requete = "INSERT INTO movies(ID_FILM, TITLE, ACTORS, DIRECTOR, PRODUCER, YEAR_OF_PROD,LANGUAGES, CATEGORY, STORYLINE, VIDEO;)
-                        VALUES (NULL, $title, $actors, $director, $producer, $YearOfProd, $Language, $Category, $Storyline, $video )";
+                        VALUES (NULL, 'title', 'actors', 'director', 'producer', 'YearOfProd', 'Languages', 'Category', 'Storyline', 'video' )";
 
 
     }
