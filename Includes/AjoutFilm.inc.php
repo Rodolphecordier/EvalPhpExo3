@@ -2,6 +2,18 @@
 include_once ("FormAjoutFilm.php");
 include_once ("././Function/ConnectionPDO.php");
 
+
+try{
+    $db = new PDO("mysql:dbname=movies","root","");
+
+}
+catch (PDOException $e){
+
+    $fp = fopen("erreur.log","a+");
+    fwrite($fp,$e->getMessage());
+}
+var_dump($db);
+
 if(isset($_POST["envoyer"])) {
     $tabError = array();
     $title = $_POST['title'];
@@ -36,21 +48,13 @@ if(isset($_POST["envoyer"])) {
     if( $_POST['video']  == "")
         array_push($tabError, "Veuillez renseigné un URL");
     else{
+        $requete = "INSERT INTO movies(ID_FILM, TITLE, ACTORS, DIRECTOR, PRODUCER, YEAR_OF_PROD,LANGUAGES, CATEGORY, STORYLINE, VIDEO;)
+                        VALUES (NULL, $title, $actors, $director, $producer, $YearOfProd, $Language, $Category, $Storyline, $video )";
+
 
     }
-
 };
 
-$db = connectionPDO();
-
-if (!$db) {
-    echo "Erreur de connexion";
-}
+return $db ;
 
 
-else {
-    $requete = $db->exec( "INSERT INTO movies(ID_FILM, TITLE, ACTORS, DIRECTOR, PRODUCER, YEAR_OF_PROD,LANGUAGES, CATEGORY, STORYLINE, VIDEO;)
-                        VALUES (NULL, $title, $actors, $director, $producer, $YearOfProd, $Language, $Category, $Storyline, $video )");
-
-    var_dump($requete);
-};
